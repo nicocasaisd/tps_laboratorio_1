@@ -81,22 +81,22 @@ void ingresarPrecioVuelos(float* pAA, float* pLat, int* pflagAA, int* pflagLatam
     }
 }
 
-int pedirNumero(int min, int max)
+float pedirNumero(int min, int max)
 {
-    int numero;
+    float numero;
 
     printf("Ingrese un valor entre %d y %d: ", min, max);
-    while(scanf("%d", &numero)==0)
+    while(scanf("%f", &numero)==0)
     {
         printf("ERROR. Solo valores numericos. Reingrese: ");
-        scanf("%d", &numero);
+        scanf("%f", &numero);
         __fpurge(stdin); // en windows fflush(stdin);
     }
     while(numero<min || numero>max)
     {
         printf("Numero fuera de rango. Reingrese: ");
         __fpurge(stdin); // en windows fflush(stdin);
-        scanf("%d", &numero);
+        scanf("%f", &numero);
     }
 
     return numero;
@@ -105,7 +105,7 @@ void pausar()
 {
     char auxPausa;
     __fpurge(stdin);
-    printf("\n\nPresione una tecla para continuar...");
+    printf("\n\nPresione enter para continuar...");
     scanf("%c", &auxPausa);
 }
 
