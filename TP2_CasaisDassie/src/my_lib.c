@@ -9,7 +9,7 @@ char* strlwr(char* s)
     char* tmp = s;
 
     for (;*tmp;++tmp) {
-        *tmp = tolower((unsigned char) *tmp);
+        //*tmp = tolower((unsigned char) *tmp);
     }
 
     return s;
@@ -20,7 +20,7 @@ char* strupr(char* s)
     char* tmp = s;
 
     for (;*tmp;++tmp) {
-        *tmp = toupper((unsigned char) *tmp);
+        //*tmp = toupper((unsigned char) *tmp);
     }
 
     return s;

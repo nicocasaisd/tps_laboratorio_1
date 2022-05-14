@@ -130,10 +130,10 @@ int checkEntry(Passenger list[], int len)
     return index;
 }
 
-int hardcodearEmpleados(Passenger list[], int len, int cant, int* nextId, int* flag)
+int hardcodearPasajeros(Passenger list[], int len, int cant, int* nextId, int* flag)
 {
 
-    int todoOk = 0;
+    int todoOk = -1;
     Passenger impostores[] =
     {
         {0, "Juan", "Badia", 135000, "AB100",0, 0},
@@ -159,7 +159,7 @@ int hardcodearEmpleados(Passenger list[], int len, int cant, int* nextId, int* f
             *flag = *flag +1;
 
         }
-        todoOk = 1;
+        todoOk = 0;
     }
     return todoOk;
 

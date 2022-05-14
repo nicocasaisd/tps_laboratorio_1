@@ -29,7 +29,7 @@ int main()
     Passenger aux_ps;
 
     initPassengers(list, TAM);
-    hardcodearEmpleados(list, TAM, 1, &nextId, &flagPassenger);
+    hardcodearPasajeros(list, TAM, 5, &nextId, &flagPassenger);
 
 
     do
