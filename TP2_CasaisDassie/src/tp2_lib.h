@@ -17,7 +17,7 @@ int menuModificar();
 /// @fn int menuInformes()
 /// @brief Imprime el sub-menu para informes y devuelve la opcion seleccionada por el usuario.
 ///
-/// @return
+/// @return Devuelve un entero con la opcion elegida
 int menuInformes();
 
 // ABM
