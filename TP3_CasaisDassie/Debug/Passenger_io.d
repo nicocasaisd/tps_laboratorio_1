@@ -1,0 +1,14 @@
+Passenger_io.o: ../Passenger_io.c ../LinkedList.h ../Passenger.h \
+ ../Passenger_io.h ../Controller.h ../my_lib.h ../menu.h
+
+../LinkedList.h:
+
+../Passenger.h:
+
+../Passenger_io.h:
+
+../Controller.h:
+
+../my_lib.h:
+
+../menu.h:
