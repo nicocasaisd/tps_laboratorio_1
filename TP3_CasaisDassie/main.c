@@ -30,7 +30,7 @@
 int main()
 {
 	setbuf(stdout, NULL);
-
+	// creamos la LinkedList
     LinkedList* listaPasajeros = ll_newLinkedList();
     int nextId;
     // NOTA: El manejo del Id se hace a traves del archivo next_id.bin que al comenzar el programa lo carga, y al terminar lo guarda en como int nextId dentro del archivo binario.
@@ -172,7 +172,8 @@ int main()
         pausar();
     }while(salir != 's');
 
-
+    // eliminamos la LinkedList
+    ll_deleteLinkedList(listaPasajeros);
     return 0;
 }
 
