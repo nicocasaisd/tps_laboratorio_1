@@ -5,14 +5,13 @@
 #include "Passenger.h"
 #include "my_lib.h"
 
-/** \brief Parsea los datos de los pasajeros desde el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
-int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger, int* nextId)
+/// @fn int parser_PassengerFromText(FILE*, LinkedList*)
+/// @brief Parsea los datos de los pasajeros desde el archivo data.csv (modo texto).
+///
+/// @param pFile Puntero a FILE
+/// @param pArrayListPassenger Puntero a LinkedList
+/// @return Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
+int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 {
 	int exit_status = 0;
 	int r;
@@ -36,9 +35,7 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger, int*
 				if(auxPass != NULL)
 				{
 					// seteo el auxiliar tipo Passenger (casteando cuando necesario)
-					//Passenger_setId(auxPass, atoi(id));
-					Passenger_setId(auxPass, *nextId);
-					*nextId += 1;
+					Passenger_setId(auxPass, atoi(id));
 					Passenger_setNombre(auxPass, nombre);
 					Passenger_setApellido(auxPass, apellido);
 					Passenger_setPrecio(auxPass, atof(precio));
@@ -60,14 +57,13 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger, int*
     return exit_status;
 }
 
-/** \brief Parsea los datos los datos de los pasajeros desde el archivo data.bin (modo binario).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
-int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger, int* nextId)
+/// @fn int parser_PassengerFromBinary(FILE*, LinkedList*)
+/// @brief  Parsea los datos de los pasajeros desde el archivo data.bin (modo binario).
+///
+/// @param pFile Puntero a FILE
+/// @param pArrayListPassenger Puntero a LinkedList
+/// @return Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
+int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
 {
 	int exit_status = 0;
 	Passenger* auxPass;
@@ -87,11 +83,6 @@ int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger, in
 				{
 					break;
 				}
-				Passenger_setId(auxPass, *nextId);
-				*nextId += 1;
-				// printf para testeo
-				//printf("id:%d nom:%s ape:%s pre:%.2f cod:%s tipo:%d stat:%s", auxPass->id, auxPass->nombre, auxPass->apellido, auxPass->precio, auxPass->codigoVuelo, auxPass->tipoPasajero, auxPass->statusFlight);
-
 				//agrego el auxiliar Passenger cargado a la linkedlist
 				ll_add(pArrayListPassenger, auxPass);
 				// seteo el auxiliar a NULL por seguridad

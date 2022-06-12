@@ -11,10 +11,10 @@
  *
  * \param path char* Ruta del archivo
  * \param pArrayListPassenger LinkedList* Puntero a LinkedList
- * \return int
+ * \return int Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
  *
  */
-int controller_loadFromText(char* path , LinkedList* pArrayListPassenger, int* nextId)
+int controller_loadFromText(char* path , LinkedList* pArrayListPassenger)
 {
 	int exit_status = 0;
 	// abro el archivo en un puntero a struct FILE en modo 'read'
@@ -23,7 +23,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayListPassenger, int* n
 	{
 		printf("Cargando desde archivo de texto ... \n");
 		// llamo a parser que me lo carga en la LinkedList
-		parser_PassengerFromText(pFile , pArrayListPassenger, nextId);
+		parser_PassengerFromText(pFile , pArrayListPassenger);
 		// cierro el archivo
 		fclose(pFile);
 		exit_status = 1;
@@ -38,12 +38,12 @@ int controller_loadFromText(char* path , LinkedList* pArrayListPassenger, int* n
 
 /** \brief Carga los datos de los pasajeros desde el archivo data.csv (modo binario).
  *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
+ * \param path char* Ruta del archivo
+ * \param pArrayListPassenger LinkedList* Puntero a LinkedList
+ * \return int Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
  *
  */
-int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger, int* nextId)
+int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
 {
 	int exit_status = 0;
 
@@ -53,7 +53,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger, int*
 	{
 		printf("Cargando desde archivo binario ... \n");
 		// llamo a parser que me lo carga en la LinkedList
-		parser_PassengerFromBinary(pFile , pArrayListPassenger, nextId);
+		parser_PassengerFromBinary(pFile , pArrayListPassenger);
 		// cierro el archivo
 		fclose(pFile);
 		exit_status = 1;
@@ -67,11 +67,11 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger, int*
 }
 
 /// @fn int controller_addPassenger(LinkedList*, int*)
-/// @brief
+/// @brief Agrega un pasajero
 ///
-/// @param pArrayListPassenger
-/// @param nextId
-/// @return
+/// @param pArrayListPassenger Puntero a LinkedList
+/// @param nextId Entero proximo Id de pasajero
+/// @return  Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
 int controller_addPassenger(LinkedList* pArrayListPassenger, int* nextId)
 {
 	int exit_status = 0;
@@ -88,13 +88,12 @@ int controller_addPassenger(LinkedList* pArrayListPassenger, int* nextId)
     return exit_status;
 }
 
-/** \brief Modificar datos de pasajero
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
+
+/// @fn int controller_editPassenger(LinkedList*)
+/// \brief Modificar datos de pasajero
+///
+/// param pArrayListPassenger LinkedList* Puntero a LinkedList
+/// return int Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
 int controller_editPassenger(LinkedList* pArrayListPassenger)
 {
 	int exit_status = 0;
@@ -110,9 +109,8 @@ int controller_editPassenger(LinkedList* pArrayListPassenger)
 
 /** \brief Baja de pasajero
  *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
+ * \param pArrayListPassenger LinkedList* Puntero a LinkedList
+ * \return int Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
  *
  */
 int controller_removePassenger(LinkedList* pArrayListPassenger)
@@ -129,9 +127,8 @@ int controller_removePassenger(LinkedList* pArrayListPassenger)
 
 /** \brief Listar pasajeros
  *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
+ * \param pArrayListPassenger LinkedList* Puntero a LinkedList
+ * \return int Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
  *
  */
 int controller_listPassengers(LinkedList* pArrayListPassenger)
@@ -159,8 +156,8 @@ int controller_listPassengers(LinkedList* pArrayListPassenger)
 
 /** \brief Ordenar pasajeros
  *
- * \param pArrayListPassenger LinkedList*
- * \return int
+ * \param pArrayListPassenger LinkedList* Puntero a LinkedList
+ * \return int Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
  *
  */
 int controller_sortPassenger(LinkedList* pArrayListPassenger)
@@ -179,9 +176,9 @@ int controller_sortPassenger(LinkedList* pArrayListPassenger)
 
 /** \brief Guarda los datos de los pasajeros en el archivo data.csv (modo texto).
  *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
+ * \param path char* Ruta del archivo donde se guarda
+ * \param pArrayListPassenger LinkedList* Puntero a LinkedList
+ * \return int Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
  *
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListPassenger)
@@ -210,9 +207,9 @@ int controller_saveAsText(char* path , LinkedList* pArrayListPassenger)
 
 /** \brief Guarda los datos de los pasajeros en el archivo data.bin (modo binario).
  *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
+ * \param path char* Ruta del archivo donde se guarda
+ * \param pArrayListPassenger LinkedList* Puntero a LinkedList
+ * \return int Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
  *
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
@@ -235,4 +232,55 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
 	}
     return exit_status;
 }
+
+/// @fn int controller_saveNextIdAsBinary(int*)
+/// @brief Guarda el entero nextId en un archivo binario
+///
+/// @param nextId Puntero a entero
+/// @return Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
+int controller_saveNextIdAsBinary(int* nextId)
+{
+	int exit_status = 0;
+	FILE* pFile;
+
+	if(nextId != NULL)
+	{
+		pFile = fopen("next_id.bin", "wb");
+		fwrite(nextId, sizeof(int), 1, pFile);
+		fclose(pFile);
+		exit_status = 1;
+	}
+	return exit_status;
+}
+
+/// @fn int controller_loadNextIdFromBinary(int*)
+/// @brief Carga el entero nextId desde un archivo binario
+///
+/// @param nextId Puntero a nextId
+/// @return Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
+int controller_loadNextIdFromBinary(int* nextId)
+{
+	int exit_status = 0;
+	FILE* pFile;
+
+	if(nextId != NULL)
+	{
+		pFile = fopen("next_id.bin", "rb");
+		fread(nextId, sizeof(int), 1, pFile);
+		fclose(pFile);
+		exit_status = 1;
+	}
+	return exit_status;
+}
+
+
+
+
+
+
+
+
+
+
+
 

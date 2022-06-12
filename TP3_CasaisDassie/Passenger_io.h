@@ -22,12 +22,14 @@ int pedirIndexModificacion(LinkedList* pArrayListPassenger);
 // INFORMES
 int printPassenger(Passenger* auxPass);
 
-// VALIDACIONES
+//// VALIDACIONES
 int checkValidId(LinkedList* pArrayListPassenger, int id);
-int validarCadena(char str[], int largo);
-int validarPrecio(float precio);
-int validarIntRango(int opcion, int minimo, int maximo);
-int validarCadenaStatusFlight(char str[], int largo);
+
+//int checkValidId(LinkedList* pArrayListPassenger, int id);
+//int validarCadena(char str[], int largo);
+//int validarPrecio(float precio);
+//int validarIntRango(int opcion, int minimo, int maximo);
+//int validarCadenaStatusFlight(char str[], int largo);
 
 
 

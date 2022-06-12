@@ -44,8 +44,13 @@ int Passenger_getPrecio(Passenger* this,float* precio);
 int Passenger_setStatusFlight(Passenger* this,char* statusFlight);
 int Passenger_getStatusFlight(Passenger* this,char* statusFlight);
 
-int Passenger_swap(Passenger* first, Passenger* second);
+// VALIDACIONES
+int validarCadena(char str[], int largo);
+int validarPrecio(float precio);
+int validarIntRango(int opcion, int minimo, int maximo);
+int validarCadenaStatusFlight(char str[], int largo);
 
+// COMPARADORAS
 int Passenger_compareByCodigoVuelo(void* a, void* b);
 
 

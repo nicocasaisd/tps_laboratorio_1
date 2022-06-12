@@ -12,7 +12,10 @@
 #include "menu.h"
 #include "Passenger.h"
 
-
+/// @fn int menu()
+/// @brief Imprime el menu principal y permite que el usuario ingrese una opcion valida
+///
+/// @return Devuelve un entero con la opcion
 int menu()
 {
     int opcion;
@@ -45,7 +48,10 @@ int menu()
     }
     return opcion;
 }
-
+/// @fn int menuModificar()
+/// @brief Imprime el menu de modificacion de pasajero y permite que el usuario ingrese una opcion valida
+///
+/// @return Devuelve un entero con la opcion
 int menuModificar()
 {
     int opcion;
@@ -75,7 +81,9 @@ int menuModificar()
     }
     return opcion;
 }
-
+/// @fn void printHeader()
+/// @brief Imprime el encabezado para mostrar pasajeros
+///
 void printHeader()
 {
 	printf("  id       Nombre        Apellido        Precio       CodigoVuelo    TipoPasajero        Estado\n");

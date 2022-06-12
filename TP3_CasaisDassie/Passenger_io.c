@@ -15,6 +15,11 @@
 #include "my_lib.h"
 #include "menu.h"
 
+/// @fn int pedirDatos(Passenger*)
+/// @brief Pide datos al usuario y los guarda en la estructura a la que apunta pass
+///
+/// @param pass Puntero a Passenger
+/// @return Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
 int pedirDatos(Passenger* pass)
 {
     Passenger aux_ps;
@@ -86,6 +91,11 @@ int pedirDatos(Passenger* pass)
     return exit_status;
 }
 
+/// @fn int pedirIndexBaja(LinkedList*)
+/// @brief Pide al usuario que elija un pasajero para borrar y devuelve el indice en la LinkedList
+///
+/// @param pArrayListPassenger Puntero a LinkedList
+/// @return Devuelve un entero con el indice, -1 si ocurrio un error
 int pedirIndexBaja(LinkedList* pArrayListPassenger)
 {
 	int index = -1;
@@ -127,6 +137,11 @@ int pedirIndexBaja(LinkedList* pArrayListPassenger)
 	return index;
 }
 
+/// @fn int pedirIndexModificacion(LinkedList*)
+/// @brief Pide al usuario que elija un pasajero para modificar y devuelve el indice en la LinkedList
+///
+/// @param pArrayListPassenger Puntero a LinkedList
+/// @return Devuelve un entero con el indice, -1 si ocurrio un error
 int pedirIndexModificacion(LinkedList* pArrayListPassenger)
 {
 	int index = -1;
@@ -168,6 +183,12 @@ int pedirIndexModificacion(LinkedList* pArrayListPassenger)
 	return index;
 }
 
+/// @fn int pedirModificacion(LinkedList*, int)
+/// @brief Imprime el menu de modificacion y permite al usuario elegir e ingresar nuevos datos a los campos del pasajero
+///
+/// @param pArrayListPassenger Puntero a LinkedList
+/// @param index Indice del pasajero a modificar
+/// @return Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
 int pedirModificacion(LinkedList* pArrayListPassenger, int index)
 {
 	int exit_status = 0;
@@ -263,6 +284,12 @@ int pedirModificacion(LinkedList* pArrayListPassenger, int index)
 	return exit_status;
 }
 
+/// @fn int getPassengerIndexById(LinkedList*, int)
+/// @brief Obtiene el indice del pasajero a partir de su id
+///
+/// @param pArrayListPassenger Puntero a LinkedList
+/// @param id Entero con la id del pasajero
+/// @return Devuelve un entero con el indice, -1 si ocurrio un error
 int getPassengerIndexById(LinkedList* pArrayListPassenger, int id)
 {
 	int index = -1;
@@ -280,7 +307,13 @@ int getPassengerIndexById(LinkedList* pArrayListPassenger, int id)
 	return index;
 }
 
-
+/// @fn int addPassengerLinkedList(LinkedList*, Passenger*, int*)
+/// @brief Agrega un pasajero a la LinkedList y le asigna su id
+///
+/// @param pArrayListPassenger Puntero a LinkedList
+/// @param newPassenger Puntero a Passenger
+/// @param nextId Puntero a entero
+/// @return Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
 int addPassengerLinkedList(LinkedList* pArrayListPassenger, Passenger* newPassenger, int* nextId)
 {
     int exit_status = 0;
@@ -298,7 +331,11 @@ int addPassengerLinkedList(LinkedList* pArrayListPassenger, Passenger* newPassen
     return exit_status;
 }
 
-
+/// @fn int printPassenger(Passenger*)
+/// @brief Imprime en pantalla los datos de un pasajero
+///
+/// @param auxPass Puntero a Passenger
+/// @return Devuelve 0 si ocurrio un error, y 1 si se completo exitosamente.
 int printPassenger(Passenger* auxPass)
 {
 	int exit_status = 0;
@@ -336,6 +373,13 @@ int printPassenger(Passenger* auxPass)
 
 // VALIDACIONES
 
+
+/// @fn int checkValidId(LinkedList*, int)
+/// @brief Valida que la id ingresada pertenezca a un pasajero activo de la LinkedList
+///
+/// @param pArrayListPassenger Puntero a LinkedList
+/// @param id Entero
+/// @return Devuelve 1 si la id es valida, 0 si no es valida
 int checkValidId(LinkedList* pArrayListPassenger, int id)
 {
 	int esValido = 0;
@@ -351,50 +395,4 @@ int checkValidId(LinkedList* pArrayListPassenger, int id)
 		}
 	}
 	return esValido;
-}
-
-
-int validarCadena(char str[], int largo)
-{
-    int esValido = 0;
-    if(strlen(str) < largo)
-    {
-        esValido = 1;
-    }
-    return esValido;
-}
-
-int validarPrecio(float precio)
-{
-    int esValido = 0;
-    if(precio >= 1 && precio <= 99999999)
-    {
-        esValido = 1;
-    }
-    return esValido;
-}
-
-int validarIntRango(int opcion, int minimo, int maximo)
-{
-    int esValido = 0;
-    if(opcion >= minimo && opcion <= maximo)
-    {
-        esValido = 1;
-    }
-    return esValido;
-}
-
-int validarCadenaStatusFlight(char str[], int largo)
-{
-    int esValido = 0;
-    if(validarCadena(str, largo) &&
-    		(strcmp(str, "Aterrizado") == 0 ||
-			 strcmp(str, "En Horario") == 0 ||
-			 strcmp(str, "En Vuelo") == 0 ||
-			 strcmp(str, "Demorado") == 0
-			))
-    {
-        esValido = 1;
-    }
-    return esValido;
 }

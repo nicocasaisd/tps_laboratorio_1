@@ -12,28 +12,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* strlwr(char* s)
-{
-    char* tmp = s;
 
-    for (;*tmp;++tmp) {
-        //*tmp = tolower((unsigned char) *tmp);
-    }
 
-    return s;
-}
-
-char* strupr(char* s)
-{
-    char* tmp = s;
-
-    for (;*tmp;++tmp) {
-        //*tmp = toupper((unsigned char) *tmp);
-    }
-
-    return s;
-}
-
+/// @fn int utn_gets(char[], int)
+/// @brief Funcion similar a gets() que no se puede usar en Linux.
+/// 		Recibe un vector de caracteres y un tamaño y no permite escribir
+/// 		más alla de ese tamaño.
+///
+/// @param vec Vector de caracteres en el que se escribe
+/// @param tam Tamaño máximo de la cadena
+/// @return
 int utn_gets(char vec[], int tam)
 {
     int retorno = 0;
@@ -66,6 +54,9 @@ int utn_gets(char vec[], int tam)
     }
     return retorno;
 }
+/// @fn void pausar()
+/// @brief Pausa la consola hasta que se presione la tecla enter.
+///
 void pausar()
 {
     char auxPausa;
@@ -74,17 +65,4 @@ void pausar()
     scanf("%c", &auxPausa);
 }
 
-void removeNewLine(char* str)
-{
-	int len = strlen(str);
 
-	for(int i=0; i <= len; i++)
-	{
-		printf("index: %d, len: %d\n", i, len);
-		if(str[i] == '\n' || str[i] == '\r')
-		{
-			str[i] = '\0';
-			printf("Se removio\n");
-		}
-	}
-}

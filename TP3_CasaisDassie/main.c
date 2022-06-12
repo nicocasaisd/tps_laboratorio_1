@@ -32,24 +32,32 @@ int main()
 	setbuf(stdout, NULL);
 
     LinkedList* listaPasajeros = ll_newLinkedList();
-    int nextId = 1;
+    int nextId;
+    // NOTA: El manejo del Id se hace a traves del archivo next_id.bin que al comenzar el programa lo carga, y al terminar lo guarda en como int nextId dentro del archivo binario.
+    // De esa manera, podemos cargar nuevos pasajeros al programa antes de cargar desde archivo, y luego cuando los carguemos no se repetiran los ids.
+
+    //cargamos desde next_id.bin
+    if(controller_loadNextIdFromBinary(&nextId))
+    {
+    	printf("NextId cargado correctamente.\n");
+    }
     int flagSave = 0;
     char salir = 'n';
 
 
 
     do{
-    	system("clear");
+    	system("clear");	// NOTA: Esta funcion no permite limpiar consola de Eclipse pero SI funciona desde el ejecutable con la consola real de Linux
         switch(menu())
         {
             case 1:
-                if(controller_loadFromText("data.csv",listaPasajeros, &nextId))
+                if(controller_loadFromText("data.csv",listaPasajeros))
                 {
                 	printf("Datos cargados correctamente desde archivo de texto\n");
                 }
                 break;
             case 2:
-				if(controller_loadFromBinary("data.bin",listaPasajeros, &nextId))
+				if(controller_loadFromBinary("data.bin",listaPasajeros))
 				{
 					printf("Datos cargados correctamente desde archivo binario\n");
 				}
@@ -118,7 +126,7 @@ int main()
             case 8:
             	if(ll_len(listaPasajeros) > 0)
 				{
-            		if(controller_saveAsText("data_saved.csv", listaPasajeros))
+            		if(controller_saveAsText("data.csv", listaPasajeros))
 					{
 						printf("Archivo de texto guardado correctamente.\n");
 						flagSave += 1;
@@ -133,7 +141,7 @@ int main()
             case 9:
             	if(ll_len(listaPasajeros) > 0)
 				{
-            		if(controller_saveAsBinary("data_saved.bin", listaPasajeros))
+            		if(controller_saveAsBinary("data.bin", listaPasajeros))
 					{
 						printf("Archivo binario guardado correctamente.\n");
 						flagSave += 1;
@@ -152,6 +160,11 @@ int main()
             	}
             	else
             	{
+            		// guardamos el entero nextId en el archivo next_id.bin
+            		if(controller_saveNextIdAsBinary(&nextId))
+            		{
+            			printf("NextId guardado correctamente!");
+            		}
             		salir = 's';
             	}
             	break;
