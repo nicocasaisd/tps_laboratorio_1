@@ -233,6 +233,10 @@ void* ll_get(LinkedList* this, int index)
     	auxpNode = getNode(this, index);
     	// asigno la direccion del elemento de ese nodo a returnAux
     	returnAux = auxpNode->pElement;
+
+    	// resumido
+    	// getNode(this, index)->pElement;
+    	// pero getNode puede devolver NULL entonces crashea
     }
 
     return returnAux;
@@ -288,26 +292,25 @@ int ll_remove(LinkedList* this,int index)
     	if(index == 0)
     	{
         	// obtengo el nodo siguiente del que quiero eliminar
-        	pNextNode = getNode(this, index+1);
+        	//pNextNode = getNode(this, index+1);
+        	 pNextNode = pRemovedNode->pNextNode;
         	// el pFirstNode de la LinkedList ahora apunta al siguiente
         	this->pFirstNode = pNextNode;
-        	// hago un free del nodo a eliminar
-        	free(pRemovedNode);
-        	// modifico el size de la LinkedList
-        	this->size -= 1;
     	}
     	else
     	{
         	// obtengo el nodo previo y el siguiente del que quiero eliminar
         	pPreviousNode = getNode(this, index-1);
-        	pNextNode = getNode(this, index+1);
+        	// si el nodo es el ultimo, el indice fuera de rango devuelve NULL asi que esta bien
+        	//pNextNode = getNode(this, index+1);
+        	pNextNode = pRemovedNode->pNextNode;
         	// el previo ahora apunta al siguiente
         	pPreviousNode->pNextNode = pNextNode;
-        	// hago un free del nodo a eliminar
-        	free(pRemovedNode);
-        	// modifico el size de la LinkedList
-			this->size -= 1;
     	}
+    	// hago un free del nodo a eliminar
+		free(pRemovedNode);
+		// modifico el size de la LinkedList
+		this->size -= 1;
     	returnAux = 0;
     }
 
@@ -332,6 +335,11 @@ int ll_clear(LinkedList* this)
     	{
     		ll_remove(this, 0);
     	}
+
+//    	while(this->pFirstNode != NULL)
+//    	{
+//    		ll_remove(this, 0);
+//    	}
 
     	returnAux = 0;
     }
@@ -374,16 +382,19 @@ int ll_deleteLinkedList(LinkedList* this)
 int ll_indexOf(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
-    Node* auxpNode = NULL;
+    int len = ll_len(this);
+
+    Node* auxpElement = NULL;
     if(this != NULL)
     {
     	// itero sobre todos los elementos de la LL
-    	for(int i=0; i<ll_len(this); i++)
+    	for(int i=0; i<len; i++)
     	{
     		// obtengo el puntero del elemento en el indice i
-    		auxpNode = getNode(this, i);
+    		//auxpNode = getNode(this, i);
+    		auxpElement = ll_get(this, i);
     		// me fijo si pElement coincide
-    		if(auxpNode->pElement == pElement)
+    		if(auxpElement == pElement)
     		{
     			// devuelvo el indice i y break
     			returnAux = i;
@@ -408,7 +419,8 @@ int ll_isEmpty(LinkedList* this)
     int returnAux = -1;
     if(this != NULL)
     {
-    	if(ll_len(this) == 0)
+    	//if(ll_len(this) == 0)
+    	if(this->pFirstNode == NULL)
     	{
     		returnAux = 1;
     	}
