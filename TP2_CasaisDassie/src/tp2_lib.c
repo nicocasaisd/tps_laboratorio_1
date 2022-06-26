@@ -2,7 +2,7 @@
 #include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
-#include "/home/nicocasaisd/c/my_lib.h"
+#include "my_lib.h"
 #include "ArrayPassenger.h"
 #include "tp2_lib.h"
 
