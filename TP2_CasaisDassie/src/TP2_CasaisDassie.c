@@ -9,6 +9,7 @@
  */
 
 #include <stdio.h>
+#include <stdio_ext.h>
 #include <stdlib.h>
 #include "ArrayPassenger.h"
 #include "tp2_lib.h"
@@ -29,7 +30,7 @@ int main()
     Passenger aux_ps;
 
     initPassengers(list, TAM);
-    hardcodearPasajeros(list, TAM, 5, &nextId, &flagPassenger);
+
 
 
     do
@@ -96,6 +97,10 @@ int main()
             }
             break;
         case 5:
+        		hardcodearPasajeros(list, TAM, 5, &nextId, &flagPassenger);
+        		printf("Se realizo una carga forzada de pasajeros!\n");
+        	break;
+        case 6:
             salir = 's';
             break;
         }

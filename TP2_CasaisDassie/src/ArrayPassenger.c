@@ -122,7 +122,7 @@ int removePassenger(Passenger* list, int len, int id)
     if(list != NULL && len > 0 && id > 0)
     {
         index = findPassengerById(list, len, id);
-        if(index > 0)
+        if(index >= 0)
         {
             list[index].isEmpty = 1;
             exit_status = 0;

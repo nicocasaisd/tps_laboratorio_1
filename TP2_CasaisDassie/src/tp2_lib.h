@@ -102,29 +102,6 @@ int calcularPromedio(Passenger list[], int len, float* total, float* promedio, i
 /// @return Devuelve -1 si ocurrió un error y 0 si la función pudo ejecutarse correctamente.
 int printActivePassengers(Passenger list[], int len);
 
-// VALIDACIONES
-/// @fn int validarCadena(char[], int)
-/// @brief Chequea que la cadena ingresada no exceda el largo máximo.
-///
-/// @param str Puntero a cadena
-/// @param largo Numero entero maximo de caracteres permitidos
-/// @return Devuelve 1 si la cadena es valida, 0 si la cadena es invalida
-int validarCadena(char str[], int largo);
 
-/// @fn int validarPrecio(float)
-/// @brief Chequea que el valor flotante ingresado se encuentre dentro del rango definido
-///
-/// @param precio Valor flotante que se quiere validar
-/// @return Devuelve 1 si el flotante es valido, 0 si es invalido
-int validarPrecio(float precio);
-
-/// @fn int validarIntRango(int, int, int)
-/// @brief Chequea que el valor entero ingresado se encuentre dentro del rango definido
-///
-/// @param opcion Valor entero que se quiere validar
-/// @param minimo Entero minimo
-/// @param maximo Entero maximo
-/// @return Devuelve 1 si el entero es valido, 0 si es invalido
-int validarIntRango(int opcion, int minimo, int maximo);
 
 #endif // TP2_LIB_H_INCLUDED
