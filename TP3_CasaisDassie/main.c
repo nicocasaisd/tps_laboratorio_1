@@ -42,6 +42,7 @@ int main()
     	printf("NextId cargado correctamente.\n");
     }
     int flagSave = 0;
+    int flagLoad = 0;
     char salir = 'n';
 
 
@@ -51,16 +52,33 @@ int main()
         switch(menu())
         {
             case 1:
-                if(controller_loadFromText("data.csv",listaPasajeros))
-                {
-                	printf("Datos cargados correctamente desde archivo de texto\n");
-                }
+            	if(flagLoad == 0) // si aun no se cargo archivo
+            	{
+                    if(controller_loadFromText("data.csv",listaPasajeros))
+                    {
+                    	printf("Datos cargados correctamente desde archivo de texto\n");
+                    }
+                    flagLoad ++;
+            	}
+            	else
+            	{
+            		printf("Existe un archivo en memoria. No se puede volver a cargar de archivo.\n");
+            	}
+
                 break;
             case 2:
-				if(controller_loadFromBinary("data.bin",listaPasajeros))
-				{
-					printf("Datos cargados correctamente desde archivo binario\n");
-				}
+            	if(flagLoad == 0) // si aun no se cargo archivo
+            	{
+    				if(controller_loadFromBinary("data.bin",listaPasajeros))
+    				{
+    					printf("Datos cargados correctamente desde archivo binario\n");
+    				}
+                    flagLoad ++;
+            	}
+            	else
+            	{
+            		printf("Existe un archivo en memoria. No se puede volver a cargar de archivo.\n");
+            	}
 				break;
             case 3:
                 if(controller_addPassenger(listaPasajeros, &nextId))
@@ -130,6 +148,11 @@ int main()
 					{
 						printf("Archivo de texto guardado correctamente.\n");
 						flagSave += 1;
+						// guardamos el entero nextId en el archivo next_id.bin
+						if(controller_saveNextIdAsBinary(&nextId))
+						{
+							printf("NextId guardado correctamente!");
+						}
 					}
 				}
 				else
@@ -145,6 +168,11 @@ int main()
 					{
 						printf("Archivo binario guardado correctamente.\n");
 						flagSave += 1;
+						// guardamos el entero nextId en el archivo next_id.bin
+						if(controller_saveNextIdAsBinary(&nextId))
+						{
+							printf("NextId guardado correctamente!");
+						}
 					}
 				}
 				else

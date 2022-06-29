@@ -10,7 +10,8 @@ C_SRCS += \
 ../main.c \
 ../menu.c \
 ../my_lib.c \
-../parser.c 
+../parser.c \
+../utn_inputs.c 
 
 C_DEPS += \
 ./Controller.d \
@@ -19,7 +20,8 @@ C_DEPS += \
 ./main.d \
 ./menu.d \
 ./my_lib.d \
-./parser.d 
+./parser.d \
+./utn_inputs.d 
 
 OBJS += \
 ./Controller.o \
@@ -28,7 +30,8 @@ OBJS += \
 ./main.o \
 ./menu.o \
 ./my_lib.o \
-./parser.o 
+./parser.o \
+./utn_inputs.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -43,7 +46,7 @@ OBJS += \
 clean: clean--2e-
 
 clean--2e-:
-	-$(RM) ./Controller.d ./Controller.o ./Passenger.d ./Passenger.o ./Passenger_io.d ./Passenger_io.o ./main.d ./main.o ./menu.d ./menu.o ./my_lib.d ./my_lib.o ./parser.d ./parser.o
+	-$(RM) ./Controller.d ./Controller.o ./Passenger.d ./Passenger.o ./Passenger_io.d ./Passenger_io.o ./main.d ./main.o ./menu.d ./menu.o ./my_lib.d ./my_lib.o ./parser.d ./parser.o ./utn_inputs.d ./utn_inputs.o
 
 .PHONY: clean--2e-
 

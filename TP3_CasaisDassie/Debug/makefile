@@ -25,7 +25,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := tp3_linux
+BUILD_ARTIFACT_NAME := TP3
 BUILD_ARTIFACT_EXTENSION :=
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -36,19 +36,19 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 all: main-build
 
 # Main-build Target
-main-build: tp3_linux
+main-build: TP3
 
 # Tool invocations
-tp3_linux: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+TP3: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc  -o "tp3_linux" $(OBJS) $(USER_OBJS) $(LIBS) /home/nicocasaisd/Documentos/UTN/Programacion1/eclipse-workspace/tp3_linux/LinkedList.a
+	gcc  -o "TP3" $(OBJS) $(USER_OBJS) $(LIBS) /home/nicocasaisd/Documentos/UTN/Programacion1/eclipse-workspace/tps_laboratorio_1/TP3_CasaisDassie/LinkedList.a
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) tp3_linux
+	-$(RM) TP3
 	-@echo ' '
 
 .PHONY: all clean dependents main-build

@@ -14,6 +14,7 @@
 #include "Controller.h"
 #include "my_lib.h"
 #include "menu.h"
+#include "utn_inputs.h"
 
 /// @fn int pedirDatos(Passenger*)
 /// @brief Pide datos al usuario y los guarda en la estructura a la que apunta pass
@@ -26,57 +27,25 @@ int pedirDatos(Passenger* pass)
     int exit_status = 0;
     if(pass != NULL)
     {
-        printf("Ingrese nombre del pasajero: ");
-        utn_gets(aux_ps.nombre, 50);
-        while(!validarCadena(aux_ps.nombre, 50))
-        {
-            printf("Nombre demasiado largo. Ingrese nombre del pasajero: ");
-            utn_gets(aux_ps.nombre, 50);
-        }
-        printf("Ingrese apellido del pasajero: ");
-        utn_gets(aux_ps.apellido, 50);
-        while(!validarCadena(aux_ps.apellido, 50))
-        {
-            printf("Apellido demasiado largo. Ingrese apellido del pasajero: ");
-            utn_gets(aux_ps.apellido, 50);
-        }
-        printf("Ingrese precio: ");
-        if(scanf("%f", &aux_ps.precio)==0)
-        {
-            printf("Error. Valor no numerico.");
-        }
-        while(!validarPrecio(aux_ps.precio))
-        {
-            __fpurge(stdin);
-            printf("Error. Ingrese un precio entre 1 y 99.999.999: ");
-            if(scanf("%f", &aux_ps.precio)==0)
-            {
-                printf("Error. Valor no numerico.");
-            }
-        }
+    	// nombre
+		utn_getTexto(aux_ps.nombre, "Ingrese nombre del pasajero: ", "Nombre invalido. Ingrese solo caracteres.\n", 50, 5);
+		// apellido
+		utn_getTexto(aux_ps.apellido, "Ingrese apellido del pasajero: ", "Apellido invalido. Ingrese solo caracteres.\n", 50, 5);
 
-        printf("Ingrese codigo de vuelo (alfanumerico): ");
-        utn_gets(aux_ps.codigoVuelo, 9);
-        while(!validarCadena(aux_ps.codigoVuelo, 9))
-        {
-            printf("Codigo demasiado largo. Ingrese codigo del pasajero: ");
-            utn_gets(aux_ps.codigoVuelo, 9);
-        }
-        printf("Ingrese tipo de pasajero (0: EconomyClass, 1: FirstClass, 2: ExecutiveClass): ");
-        if(scanf("%d", &aux_ps.tipoPasajero) == 0)
-        {
-            __fpurge(stdin);
-            printf("Error. Valor no numerico.\n");
-        }
-        while(!validarIntRango(aux_ps.tipoPasajero, 0, 2))
-        {
-            printf("Error. Ingrese un tipo de pasajero entre 0 y 2: ");
-            if(scanf("%d", &aux_ps.tipoPasajero) == 0)
-            {
-                __fpurge(stdin);
-                printf("Error. Valor no numerico.\n");
-            }
-        }
+
+		// precio
+		utn_getNumeroDecimal(&aux_ps.precio, "Ingrese precio: ", "Error. Ingrese un precio entre 1 y 99.999.999.\n ", 1, 99999999, 5);
+
+
+		// codigo de vuelo
+		utn_getTextoAlfanumerico(aux_ps.codigoVuelo, "Ingrese codigo de vuelo (alfanumerico): ", "Codigo invalido. Ingrese caracteres alfanumericos.\n", 11, 5);
+
+
+		// tipo de pasajero
+		utn_getNumero(&aux_ps.tipoPasajero, "Ingrese tipo de pasajero (0: Turista, 1: Primera Clase, 2: Ejecutivo): ", "Valor invalido.\n", 0, 2, 5);
+
+
+		// estado de vuelo
         printf("Ingrese estado de vuelo ('Aterrizado','En Horario','En Vuelo','Demorado'): ");
         utn_gets(aux_ps.statusFlight, 20);
                 while(!validarCadenaStatusFlight(aux_ps.statusFlight, 20))
